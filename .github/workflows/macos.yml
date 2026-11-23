@@ -33,6 +33,8 @@ jobs:
           codesign --verify --strict "$bundle"
           test "$(lipo -archs "$bundle/Contents/MacOS/Transpire")" = arm64
           python3 smoke.py "$bundle/Contents/MacOS/Transpire"
+          xcrun clang++ -std=c++17 -fobjc-arc -framework Cocoa editor_smoke.mm -o build/editor_smoke
+          build/editor_smoke "$bundle/Contents/MacOS/Transpire"
           ditto -c -k --keepParent "$bundle" Transpire-macOS-arm64.zip
       - uses: actions/upload-artifact@v4
         with:
