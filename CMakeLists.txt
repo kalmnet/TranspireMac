@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 3.20)
 project(Transpire LANGUAGES C CXX OBJCXX)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_OBJCXX_STANDARD 17)
+set(CMAKE_OBJCXX_STANDARD_REQUIRED ON)
 include(FetchContent)
 set(YSFX_PLUGIN OFF CACHE BOOL "" FORCE)
+# The x86 assembly checksum target assumes ysfx is the top-level project.
+set(YSFX_SKIP_CHECKSUM ON CACHE BOOL "" FORCE)
 FetchContent_Declare(ysfx GIT_REPOSITORY https://github.com/JoepVanlier/ysfx.git
     GIT_TAG 5c3452fee62583aa3d1b7e877d0c758c4024af89)
 FetchContent_MakeAvailable(ysfx)
