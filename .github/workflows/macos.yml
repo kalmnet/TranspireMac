@@ -27,6 +27,7 @@ jobs:
           for image in bg clip credits knob_1 knob_2 knob_3 knob_4; do
             curl -fsSL "$upstream/transpire_gfx/$image.png" -o "$resources/transpire_gfx/$image.png"
           done
+          python3 prepare_editor.py "$resources/Transpire.jsfx"
           cp build/_deps/ysfx-src/LICENSE "$resources/ysfx-LICENSE.txt"
           codesign --force --sign - "$bundle"
           codesign --verify --strict "$bundle"

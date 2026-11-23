@@ -46,6 +46,7 @@ try:
 
     effect.dispatch(plugin, 0, 0, 0, None, 0)
     effect.dispatch(plugin, 10, 0, 0, None, 48000)
+    assert effect.delay == int(88 * 48000 / 44100)
     effect.dispatch(plugin, 11, 0, 512, None, 0)
     effect.dispatch(plugin, 12, 0, 1, None, 0)
     samples = c.c_float * 512
