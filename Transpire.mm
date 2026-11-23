@@ -178,9 +178,9 @@ intptr_t dispatch(Effect *effect, int32_t opcode, int32_t index, intptr_t value,
         return 1;
     }
     case 13: {
-        static Rect rect{0, 0, height, width};
+        static camel::legacy::Rect rect{0, 0, height, width};
         if (!data) return 0;
-        *static_cast<Rect **>(data) = &rect;
+        *static_cast<camel::legacy::Rect **>(data) = &rect;
         return 1;
     }
     case 14: {
