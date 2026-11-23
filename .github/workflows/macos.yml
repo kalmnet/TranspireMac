@@ -30,7 +30,7 @@ jobs:
           cp build/_deps/ysfx-src/LICENSE "$resources/ysfx-LICENSE.txt"
           codesign --force --sign - "$bundle"
           codesign --verify --strict "$bundle"
-          lipo -verify_arch arm64 "$bundle/Contents/MacOS/Transpire"
+          test "$(lipo -archs "$bundle/Contents/MacOS/Transpire")" = arm64
           python3 smoke.py "$bundle/Contents/MacOS/Transpire"
           ditto -c -k --keepParent "$bundle" Transpire-macOS-arm64.zip
       - uses: actions/upload-artifact@v4
